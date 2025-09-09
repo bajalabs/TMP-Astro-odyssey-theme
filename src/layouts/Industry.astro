@@ -26,7 +26,7 @@ const seo = { title, description, publishDate, image: featuredImage };
         <h2>Relevant Solutions</h2>
         <ul class="related__list">
           {solutions.map(sol => (
-            <li><a href={`/solutions/${sol.toLowerCase().replace(/\s+/g,'-')}`}>{sol}</a></li>
+            <li><a href={`/solutions/solution/${sol.toLowerCase().replace(/\s+/g,'-')}`}>{sol}</a></li>
           ))}
         </ul>
       </section>
