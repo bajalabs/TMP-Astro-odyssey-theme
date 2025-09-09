@@ -1,0 +1,20 @@
+---
+import Container from '../../components/core/Container.astro';
+const { items = [] } = Astro.props; // expect array of case studies; alternate layout automatically
+---
+<section class="section-divider">
+  <Container>
+    {items.map((c, idx) => (
+      <div class={"case-spotlight" + (idx % 2 === 1 ? ' reverse' : '')}>
+        <div>
+          <img src={c.image} alt={c.alt} loading="lazy" />
+        </div>
+        <div>
+          <h3>{c.title}</h3>
+          <p>{c.summary}</p>
+          <p><a class="btn-secondary-link" href={c.link}>Read more →</a></p>
+        </div>
+      </div>
+    ))}
+  </Container>
+</section>

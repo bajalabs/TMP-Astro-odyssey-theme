@@ -1,0 +1,16 @@
+---
+import Container from '../../components/core/Container.astro';
+const { items = [] } = Astro.props;
+---
+<section class="section-divider">
+  <Container>
+    <div class="value-cards-grid">
+      {items.map(card => (
+        <article class="value-card">
+          <h3>{card.title}</h3>
+          <p>{card.body}</p>
+        </article>
+      ))}
+    </div>
+  </Container>
+</section>

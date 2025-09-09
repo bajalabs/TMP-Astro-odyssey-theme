@@ -1,0 +1,16 @@
+---
+import Container from '../../components/core/Container.astro';
+import BlogPostPreview from '../../components/blog/BlogPostPreview.astro';
+const posts = (await Astro.glob('../../pages/blog/**/*.mdx'))
+  .filter(p => !p.frontmatter.draft)
+  .sort((a,b) => new Date(b.frontmatter.publishDate).getTime() - new Date(a.frontmatter.publishDate).getTime())
+  .slice(0,3);
+---
+<section class="section-divider blog-teaser">
+  <Container>
+    <h2>Insights & Knowledge</h2>
+    <div class="value-cards-grid">
+      {posts.map(p => <BlogPostPreview post={p} />)}
+    </div>
+  </Container>
+</section>

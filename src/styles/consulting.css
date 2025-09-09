@@ -1,0 +1,111 @@
+/* Flat Dark Blue Consulting Theme Tokens (scoped additive) */
+:root {
+  --color-blue-dark: #0c1321;
+  --color-blue-rich: #033356;
+  --color-blue-mid: #00579a;
+  --color-blue-bright: #06a9f5;
+  --color-blue-light: #bfe5fb;
+  --color-text-on-dark: #ffffff;
+  --color-text-muted: #7a8899;
+  --color-border-low: rgba(255,255,255,0.06);
+  --color-border-mid: rgba(255,255,255,0.12);
+  --focus-ring: #1cc3ff;
+}
+
+.consulting-hero {
+  background: var(--color-blue-dark);
+  color: var(--color-text-on-dark);
+  padding: clamp(3rem, 8vw, 6rem) 0 3rem;
+}
+
+.consulting-hero h1 { 
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  line-height: 1.1;
+  max-width: 18ch;
+  margin: 0 0 1rem;
+}
+
+.consulting-hero .lead { 
+  max-width: 60ch; 
+  color: var(--color-blue-light);
+  margin-bottom: 1.75rem;
+}
+
+.consulting-hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+.btn-primary-consulting { 
+  background: var(--color-blue-bright); 
+  color: #06263a; 
+  font-weight: 600; 
+  padding: 0.85rem 1.4rem; 
+  border-radius: 6px; 
+  text-decoration: none; 
+  display: inline-flex; 
+  align-items: center; 
+  gap: .5rem; 
+  transition: background var(--transition-base,180ms ease);
+}
+.btn-primary-consulting:hover { background: #22b9ff; }
+.btn-secondary-link { color: var(--color-blue-bright); text-decoration: underline; font-weight: 500; }
+
+/* Value Cards */
+.value-cards-grid { 
+  display: grid; 
+  gap: 1.5rem; 
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); 
+  margin-top: 2.5rem; 
+}
+.value-card { 
+  background: var(--elev-card-bg, rgba(255,255,255,0.04));
+  border: 1px solid var(--elev-card-border, var(--color-border-mid));
+  padding: 1.25rem 1.25rem 1.5rem; 
+  border-radius: 8px; 
+  display: flex; flex-direction: column; gap: .75rem; 
+  transition: background 150ms ease, border-color 150ms ease; 
+}
+.value-card:hover { background: var(--elev-card-bg-hover, rgba(255,255,255,0.06)); }
+.value-card h3 { font-size: 1.05rem; margin: 0; }
+.value-card p { margin: 0; font-size: .9rem; color: var(--color-text-muted); }
+
+/* Process Timeline */
+.process-timeline { margin-top: 3.5rem; display: grid; gap: 2rem; }
+@media (min-width: 780px) { .process-timeline { grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); } }
+.process-step { position: relative; padding-left: 0; }
+.process-step-number { 
+  width: 40px; height: 40px; border-radius: 50%; 
+  background: var(--color-blue-mid); color: #fff; 
+  display: flex; align-items: center; justify-content: center; 
+  font-weight: 600; margin-bottom: .75rem; 
+}
+.process-step h4 { margin: 0 0 .5rem; font-size: 1rem; }
+.process-step p { margin: 0; font-size: .85rem; color: var(--color-text-muted); }
+
+/* Case Study */
+.case-spotlight { display: grid; gap: 2rem; align-items: center; margin-top: 4rem; }
+@media (min-width: 900px) { .case-spotlight { grid-template-columns: 1fr 1fr; } }
+.case-spotlight.reverse { direction: rtl; }
+.case-spotlight.reverse > * { direction: ltr; }
+.case-spotlight img { width: 100%; border-radius: 8px; border:1px solid var(--color-border-low); }
+
+/* Testimonials */
+.testimonials { margin-top: 4rem; display: grid; gap: 2.5rem; }
+.testimonial { max-width: 760px; }
+.testimonial blockquote { margin:0 0 .75rem; font-size:1.05rem; line-height:1.45; }
+.testimonial cite { font-style: normal; font-size: .85rem; color: var(--color-text-muted); }
+
+/* Blog Teaser */
+.blog-teaser { margin-top: 4rem; }
+
+/* CTA Band */
+.consulting-cta-band { 
+  margin-top: 5rem; 
+  background: var(--color-blue-rich); 
+  padding: 3.5rem 0; 
+  border-top:1px solid var(--color-border-mid); 
+  border-bottom:1px solid var(--color-border-mid); 
+  text-align: center; 
+}
+.consulting-cta-band h2 { margin: 0 0 1rem; font-size: clamp(1.75rem,3.5vw,2.25rem); }
+
+/* Utility */
+.section-divider { margin-top: 4rem; border-top:1px solid var(--color-border-low); padding-top: 4rem; }

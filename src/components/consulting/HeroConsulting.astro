@@ -1,0 +1,19 @@
+---
+import Container from '../../components/core/Container.astro';
+const { headline, subheading, primaryCta, secondaryCta, logos = [] } = Astro.props;
+---
+<section class="consulting-hero">
+  <Container>
+    <h1>{headline}</h1>
+    {subheading && <p class="lead">{subheading}</p>}
+    <div class="consulting-hero-actions">
+      {primaryCta && <a class="btn-primary-consulting" href={primaryCta.href}>{primaryCta.label}</a>}
+      {secondaryCta && <a class="btn-secondary-link" href={secondaryCta.href}>{secondaryCta.label}</a>}
+    </div>
+    {logos.length > 0 && (
+      <div class="logos" aria-label="Client logos">
+        {logos.map(l => <img src={l.src} alt={l.alt || ''} width={l.width || 90} height={l.height || 40} loading="lazy" />)}
+      </div>
+    )}
+  </Container>
+</section>

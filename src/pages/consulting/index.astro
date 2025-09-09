@@ -1,0 +1,28 @@
+---
+import Layout from '../../layouts/Page.astro';
+import '../../styles/consulting.css';
+import HeroConsulting from '../../components/consulting/HeroConsulting.astro';
+import ValueCards from '../../components/consulting/ValueCards.astro';
+import ProcessTimeline from '../../components/consulting/ProcessTimeline.astro';
+import CaseStudySpotlight from '../../components/consulting/CaseStudySpotlight.astro';
+import Testimonials from '../../components/consulting/Testimonials.astro';
+import BlogTeaser from '../../components/consulting/BlogTeaser.astro';
+import CtaBand from '../../components/consulting/CtaBand.astro';
+import { valueCards, steps, caseStudies, testimonials, cta } from '../../config/consulting.js';
+
+const seo = { title: 'Consulting | Dark Blue', description: 'Strategic & operational consulting services.' };
+---
+<Layout {seo}>
+  <HeroConsulting
+    headline="Your Partners in Innovation and Success"
+    subheading="We embed strategy execution frameworks that accelerate measurable outcomes across product, platform and operations."
+    primaryCta={{ label: 'Get Started', href: '/contact' }}
+    secondaryCta={{ label: 'Our Approach', href: '#process' }}
+  />
+  <ValueCards items={valueCards} />
+  <ProcessTimeline steps={steps} />
+  <CaseStudySpotlight items={caseStudies} />
+  <Testimonials items={testimonials} />
+  <BlogTeaser />
+  <CtaBand headline={cta.headline} cta={cta.cta} />
+</Layout>

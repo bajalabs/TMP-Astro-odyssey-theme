@@ -1,0 +1,14 @@
+---
+import Container from '../../components/core/Container.astro';
+const { items = [] } = Astro.props;
+---
+<section class="section-divider testimonials">
+  <Container>
+    {items.map(t => (
+      <div class="testimonial">
+        <blockquote>“{t.quote}”</blockquote>
+        <cite>{t.author} — {t.role}</cite>
+      </div>
+    ))}
+  </Container>
+</section>

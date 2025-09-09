@@ -1,0 +1,17 @@
+---
+import Container from '../../components/core/Container.astro';
+const { steps = [] } = Astro.props;
+---
+<section class="section-divider">
+  <Container>
+    <div class="process-timeline" role="list">
+      {steps.map((s, i) => (
+        <div class="process-step" role="listitem">
+          <div class="process-step-number">{i + 1}</div>
+          <h4>{s.title}</h4>
+          <p>{s.body}</p>
+        </div>
+      ))}
+    </div>
+  </Container>
+</section>

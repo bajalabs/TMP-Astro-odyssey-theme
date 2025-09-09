@@ -1,0 +1,10 @@
+---
+import Container from '../../components/core/Container.astro';
+const { headline, cta } = Astro.props;
+---
+<section class="consulting-cta-band">
+  <Container>
+    <h2>{headline}</h2>
+    {cta && <p><a class="btn-primary-consulting" href={cta.href}>{cta.label}</a></p>}
+  </Container>
+</section>
