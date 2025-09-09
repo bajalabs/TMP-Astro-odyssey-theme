@@ -1,0 +1,37 @@
+---
+import { Container, TextCardSection } from '@components/odyssey-theme';
+import Layout from '../../../layouts/Page.astro';
+import { normalizeContentEntries } from '../../../utils/content.js';
+import { paginate } from '../../../utils/paginate.js';
+import SolutionsList from '../../../components/solutions/SolutionsList.astro';
+import Pagination from '../../../components/core/Pagination.astro';
+import config from '../../../../theme.config.js';
+
+export async function getStaticPaths() {
+  const raw = await Astro.glob('../solution/*.mdx');
+  const all = normalizeContentEntries(raw, { mapExtra: fm => ({ industries: fm.industries || [] }) });
+  const pager = paginate(all, config.pagination.pageSize);
+  return Array.from({ length: pager.totalPages }).map((_, i) => ({ params: { page: String(i + 1) } }));
+}
+
+const { page } = Astro.params;
+const rawSolutions = await Astro.glob('../solution/*.mdx');
+const solutionsAll = normalizeContentEntries(rawSolutions, { mapExtra: fm => ({ industries: fm.industries || [] }) });
+const pager = paginate(solutionsAll, config.pagination.pageSize);
+const pageNum = parseInt(page, 10) || 1;
+const solutions = pager.slice(pageNum);
+const seo = { title: `Solutions – Page ${pageNum}`, description: 'Paginated solutions listing.' };
+---
+<Layout {seo}>
+  <Container>
+    <TextCardSection>
+      <h1>Solutions (Page {pageNum})</h1>
+      <p>Explore our solutions designed to accelerate adoption and streamline operations.</p>
+    </TextCardSection>
+    <section class="solutions-listing__section">
+      <h2>All Solutions</h2>
+      <SolutionsList solutions={solutions} />
+      <Pagination currentPage={pageNum} totalPages={pager.totalPages} basePath="/solutions" />
+    </section>
+  </Container>
+</Layout>

@@ -27,7 +27,7 @@ const seo = { title, description, publishDate, image: featuredImage };
         <h2>Related Industries</h2>
         <ul class="related__list">
           {industries.map(ind => (
-            <li><a href={`/industries/${slugify(ind)}`}>{ind}</a></li>
+            <li><a href={`/industries/industry/${slugify(ind)}`}>{ind}</a></li>
           ))}
         </ul>
       </section>

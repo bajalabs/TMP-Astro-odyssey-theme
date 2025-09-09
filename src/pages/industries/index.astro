@@ -2,10 +2,16 @@
 import { Container, TextCardSection } from '@components/odyssey-theme';
 import Layout from '../../layouts/Page.astro';
 import { normalizeContentEntries } from '../../utils/content.js';
+import { paginate } from '../../utils/paginate.js';
+import Pagination from '../../components/core/Pagination.astro';
 import IndustriesList from '../../components/industries/IndustriesList.astro';
 
-const rawIndustries = await Astro.glob('./items/*.mdx');
-const industries = normalizeContentEntries(rawIndustries, { mapExtra: (fm) => ({ solutions: fm.solutions || [] }) });
+const rawIndustries = await Astro.glob('./industry/*.mdx');
+const industriesAll = normalizeContentEntries(rawIndustries, { mapExtra: (fm) => ({ solutions: fm.solutions || [] }) });
+import config from '../../../theme.config.js';
+const pageSize = config.pagination.pageSize;
+const pager = paginate(industriesAll, pageSize);
+const industries = pager.slice(1);
 
 const seo = { title: 'Industries | Odyssey Theme', description: 'Industries we serve and enable.' };
 ---
@@ -15,10 +21,11 @@ const seo = { title: 'Industries | Odyssey Theme', description: 'Industries we s
       <h1>Industries</h1>
       <p>We tailor our platform and services to unique industry needs. Explore sectors we support.</p>
     </TextCardSection>
-    {industries.length > 0 ? (
+  {industries.length > 0 ? (
       <section class="industries-listing__section">
         <h2>All Industries</h2>
-        <IndustriesList industries={industries} />
+    <IndustriesList industries={industries} />
+    <Pagination currentPage={1} totalPages={pager.totalPages} basePath="/industries" />
       </section>
     ) : (
       <p>No industries have been published yet.</p>

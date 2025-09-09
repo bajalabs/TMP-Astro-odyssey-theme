@@ -2,10 +2,16 @@
 import { Container, TextCardSection } from '@components/odyssey-theme';
 import Layout from '../../layouts/Page.astro';
 import { normalizeContentEntries } from '../../utils/content.js';
+import { paginate } from '../../utils/paginate.js';
+import Pagination from '../../components/core/Pagination.astro';
 import SolutionsList from '../../components/solutions/SolutionsList.astro';
 
-const rawSolutions = await Astro.glob('./items/*.mdx');
-const solutions = normalizeContentEntries(rawSolutions, { mapExtra: (fm) => ({ industries: fm.industries || [] }) });
+const rawSolutions = await Astro.glob('./solution/*.mdx');
+const solutionsAll = normalizeContentEntries(rawSolutions, { mapExtra: (fm) => ({ industries: fm.industries || [] }) });
+import config from '../../../theme.config.js';
+const pageSize = config.pagination.pageSize;
+const pager = paginate(solutionsAll, pageSize);
+const solutions = pager.slice(1);
 
 const seo = { title: 'Solutions | Odyssey Theme', description: 'Our catalog of product and service solutions.' };
 ---
@@ -15,10 +21,11 @@ const seo = { title: 'Solutions | Odyssey Theme', description: 'Our catalog of p
       <h1>Solutions</h1>
       <p>Explore our solutions designed to accelerate adoption and streamline operations.</p>
     </TextCardSection>
-    {solutions.length > 0 ? (
+  {solutions.length > 0 ? (
       <section class="solutions-listing__section">
         <h2>All Solutions</h2>
-        <SolutionsList solutions={solutions} />
+    <SolutionsList solutions={solutions} />
+    <Pagination currentPage={1} totalPages={pager.totalPages} basePath="/solutions" />
       </section>
     ) : (
       <p>No solutions have been published yet.</p>
