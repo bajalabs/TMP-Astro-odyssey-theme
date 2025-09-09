@@ -1,6 +1,7 @@
 ---
 import { Container } from '@components/odyssey-theme';
 import Layout from './Page.astro';
+import { slugify } from '../utils/slug.js';
 
 const { content: { title, description, publishDate, featuredImage, industries, tags } } = Astro.props;
 
@@ -26,7 +27,7 @@ const seo = { title, description, publishDate, image: featuredImage };
         <h2>Related Industries</h2>
         <ul class="related__list">
           {industries.map(ind => (
-            <li><a href={`/industries/${ind.toLowerCase().replace(/\s+/g,'-')}`}>{ind}</a></li>
+            <li><a href={`/industries/${slugify(ind)}`}>{ind}</a></li>
           ))}
         </ul>
       </section>
